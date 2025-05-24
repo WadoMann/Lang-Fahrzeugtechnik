@@ -1,17 +1,23 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
 import path from "path";
+import express from "express";
 import { storage } from "./storage";
 
 export async function registerRoutes(app: Express): Promise<Server> {
   // Serve static files from attached_assets for images and videos
-  app.use('/assets', (req, res, next) => {
-    const assetsPath = path.resolve(process.cwd(), 'attached_assets');
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Methods', 'GET');
-    res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-    next();
-  });
+  const assetsPath = path.resolve(process.cwd(), 'attached_assets');
+  app.use('/assets', express.static(assetsPath, {
+    setHeaders: (res, path) => {
+      if (path.endsWith('.mp4')) {
+        res.setHeader('Content-Type', 'video/mp4');
+      }
+      if (path.endsWith('.jpeg') || path.endsWith('.jpg')) {
+        res.setHeader('Content-Type', 'image/jpeg');
+      }
+      res.setHeader('Cache-Control', 'public, max-age=31536000');
+    }
+  }));
 
   // API route for contact form submissions (if needed in the future)
   app.post("/api/contact", async (req, res) => {
