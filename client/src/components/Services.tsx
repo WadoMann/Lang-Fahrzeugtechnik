@@ -1,0 +1,95 @@
+import { motion } from "framer-motion";
+import { useInView } from "framer-motion";
+import { useRef } from "react";
+import { Search, Settings, AlertTriangle, ClipboardCheck, Wrench, Zap } from "lucide-react";
+
+const services = [
+  {
+    icon: Search,
+    title: "Fahrzeugdiagnose",
+    description: "Computergestützte Diagnose aller Fahrzeugsysteme mit modernster Technik für präzise Fehlererkennung",
+    image: "https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=250",
+    color: "text-primary"
+  },
+  {
+    icon: Settings,
+    title: "Motor & Getriebe",
+    description: "Wartung und Reparatur von Motor- und Getriebetechnik für optimale Fahrleistung und Langlebigkeit",
+    image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=250",
+    color: "text-secondary"
+  },
+  {
+    icon: AlertTriangle,
+    title: "Bremsenservice",
+    description: "Sicherheitsprüfung und Wartung des Bremssystems für maximale Fahrsicherheit bei allen Witterungsbedingungen",
+    image: "https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=250",
+    color: "text-accent"
+  },
+  {
+    icon: ClipboardCheck,
+    title: "HU & AU",
+    description: "Hauptuntersuchung und Abgasuntersuchung - wir bereiten Ihr Fahrzeug optimal auf die Prüfung vor",
+    image: "https://images.unsplash.com/photo-1542574621-e088a4464f90?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=250",
+    color: "text-success"
+  },
+  {
+    icon: Wrench,
+    title: "Reifen & Räder",
+    description: "Reifenwechsel, Auswuchten, Spureinstellung und Beratung für optimalen Fahrkomfort und Sicherheit",
+    image: "https://images.unsplash.com/photo-1615906655593-ad0386982a0f?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=250",
+    color: "text-primary"
+  },
+  {
+    icon: Zap,
+    title: "Elektrik & Beleuchtung",
+    description: "Reparatur und Wartung der Fahrzeugelektrik, Beleuchtung und elektrischer Systeme",
+    image: "https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=250",
+    color: "text-accent"
+  }
+];
+
+export default function Services() {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
+
+  return (
+    <section id="services" className="py-20 bg-white" ref={ref}>
+      <div className="container mx-auto px-4">
+        <motion.div
+          className="text-center mb-16"
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+          transition={{ duration: 0.6 }}
+        >
+          <h2 className="text-4xl md:text-5xl font-bold text-neutral mb-6">Fahrzeug Service</h2>
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            Professionelle Wartung und Reparatur für alle Fahrzeugtypen mit modernster Technik und jahrelanger Erfahrung
+          </p>
+        </motion.div>
+
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {services.map((service, index) => (
+            <motion.div
+              key={service.title}
+              className="service-card bg-white rounded-xl shadow-lg p-8 border border-gray-100"
+              initial={{ opacity: 0, y: 30 }}
+              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+              transition={{ duration: 0.6, delay: index * 0.1 }}
+            >
+              <img
+                src={service.image}
+                alt={service.title}
+                className="w-full h-48 object-cover rounded-lg mb-6"
+              />
+              <div className="text-center">
+                <service.icon className={`mx-auto mb-4 ${service.color}`} size={48} />
+                <h3 className="text-2xl font-bold text-neutral mb-4">{service.title}</h3>
+                <p className="text-gray-600">{service.description}</p>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
