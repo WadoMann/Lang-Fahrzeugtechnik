@@ -83,11 +83,12 @@ export default function Services() {
                   loop
                   playsInline
                   className="w-full h-48 object-cover rounded-lg mb-6"
+                  onLoadStart={() => console.log('Video started loading')}
+                  onCanPlay={() => console.log('Video can play')}
+                  onError={(e) => console.error('Video error:', e)}
                 >
                   <source src={service.video} type="video/mp4" />
-                  <div className="w-full h-48 bg-gray-200 rounded-lg flex items-center justify-center">
-                    <span className="text-gray-500">Video wird geladen...</span>
-                  </div>
+                  Ihr Browser unterstützt das Video-Format nicht.
                 </video>
               ) : (
                 <img
