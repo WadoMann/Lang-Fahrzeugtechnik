@@ -9,40 +9,45 @@ export default function Logo({ className = "", showText = true }: LogoProps) {
   return (
     <div className={`flex items-center space-x-3 ${className}`}>
       {/* Custom SVG Logo */}
-      <div className="relative w-16 h-16">
+      <div className="relative w-20 h-20">
         <svg
           viewBox="0 0 48 48"
           className="w-full h-full"
           xmlns="http://www.w3.org/2000/svg"
         >
-          {/* Background Circle */}
+          {/* Background Circle with Shadow */}
+          <circle
+            cx="25"
+            cy="25"
+            r="20"
+            fill="#374151"
+            opacity="0.3"
+          />
           <circle
             cx="24"
             cy="24"
-            r="22"
+            r="20"
             fill="url(#gradient)"
             stroke="#1E40AF"
-            strokeWidth="2"
+            strokeWidth="3"
           />
           
-          {/* Car silhouette */}
+          {/* Modern Car silhouette */}
           <path
-            d="M12 28h2c0-2.2 1.8-4 4-4s4 1.8 4 4h8c0-2.2 1.8-4 4-4s4 1.8 4 4h2v-4c0-1.1-.9-2-2-2h-3l-2-4h-6v-2c0-.6-.4-1-1-1h-4c-.6 0-1 .4-1 1v2h-6l-2 4h-3c-1.1 0-2 .9-2 2v4z"
+            d="M10 26h3c0-1.5 1.3-3 3-3s3 1.5 3 3h10c0-1.5 1.3-3 3-3s3 1.5 3 3h3v-3c0-1-.8-2-2-2h-4l-3-5h-8v-1c0-.5-.4-1-1-1h-2c-.5 0-1 .4-1 1v1h-8l-3 5h-4c-1 0-2 .8-2 2v3z"
             fill="white"
           />
           
-          {/* Wheels */}
-          <circle cx="18" cy="30" r="2" fill="white" />
-          <circle cx="30" cy="30" r="2" fill="white" />
+          {/* Modern Wheels */}
+          <circle cx="16" cy="28" r="2.5" fill="white" />
+          <circle cx="32" cy="28" r="2.5" fill="white" />
+          <circle cx="16" cy="28" r="1" fill="#1E40AF" />
+          <circle cx="32" cy="28" r="1" fill="#1E40AF" />
           
-          {/* Wrench icon in top right */}
-          <g transform="translate(28, 8)">
-            <path
-              d="M2 6L6 2L8 4L6 6L8 8L6 10L2 6Z"
-              fill="white"
-              strokeWidth="1"
-              stroke="#1E40AF"
-            />
+          {/* Gear icon */}
+          <g transform="translate(30, 10)">
+            <circle cx="4" cy="4" r="2" fill="white" stroke="#1E40AF" strokeWidth="1"/>
+            <path d="M4 1L4.5 2L5.5 2L4.5 3L5 4L4 3.5L3 4L3.5 3L2.5 2L3.5 2Z" fill="#1E40AF"/>
           </g>
           
           {/* Gradient definition */}
@@ -58,10 +63,10 @@ export default function Logo({ className = "", showText = true }: LogoProps) {
       
       {showText && (
         <div>
-          <h1 className="text-xl font-bold text-neutral bg-gradient-to-r from-primary to-blue-600 bg-clip-text text-transparent">
+          <h1 className="text-2xl md:text-3xl font-bold text-neutral bg-gradient-to-r from-primary to-blue-600 bg-clip-text text-transparent">
             Lang Fahrzeugtechnik
           </h1>
-          <p className="text-sm text-gray-600 font-medium">Professioneller KFZ-Service</p>
+          <p className="text-base md:text-lg text-gray-600 font-medium">Professioneller KFZ-Service</p>
         </div>
       )}
     </div>

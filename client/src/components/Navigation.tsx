@@ -37,27 +37,27 @@ export default function Navigation() {
     <>
       <nav
         className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-          isScrolled ? "bg-white/98 backdrop-blur-sm shadow-sm" : "bg-white/95 backdrop-blur-sm"
+          isScrolled ? "bg-white/98 backdrop-blur-sm shadow-lg" : "bg-white/95 backdrop-blur-sm"
         }`}
       >
-        <div className="container mx-auto px-4">
-          <div className="flex justify-between items-center py-4">
+        <div className="container mx-auto px-6">
+          <div className="flex justify-between items-center py-6">
             <Logo />
 
             {/* Desktop Navigation */}
-            <div className="hidden md:flex space-x-8">
+            <div className="hidden md:flex space-x-10">
               {navItems.map((item) => (
                 <button
                   key={item.id}
                   onClick={() => scrollToSection(item.id)}
-                  className="nav-link text-neutral hover:text-primary font-medium transition-all duration-300"
+                  className="nav-link text-neutral hover:text-primary font-semibold text-lg transition-all duration-300 hover:scale-105"
                 >
                   {item.name}
                 </button>
               ))}
               <button
                 onClick={() => setActiveModal("impressum")}
-                className="nav-link text-neutral hover:text-primary font-medium transition-all duration-300"
+                className="nav-link text-neutral hover:text-primary font-semibold text-lg transition-all duration-300 hover:scale-105"
               >
                 Impressum
               </button>
