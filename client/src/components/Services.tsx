@@ -9,6 +9,7 @@ const services = [
     title: "Fahrzeugdiagnose",
     description: "Computergestützte Diagnose aller Fahrzeugsysteme mit modernster Technik für präzise Fehlererkennung",
     image: "/assets/img-8922-klein.jpeg",
+    video: "/assets/Video%201.mp4",
     color: "text-primary"
   },
   {
@@ -51,6 +52,7 @@ const services = [
 export default function Services() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const [hoveredCard, setHoveredCard] = useState<number | null>(null);
 
   return (
     <section id="services" className="py-20 bg-gradient-to-b from-blue-900 to-slate-800" ref={ref}>
@@ -71,16 +73,34 @@ export default function Services() {
           {services.map((service, index) => (
             <motion.div
               key={service.title}
-              className="service-card bg-white rounded-xl shadow-lg p-8 border border-gray-100"
+              className="service-card bg-white rounded-xl shadow-lg p-8 border border-gray-100 relative overflow-hidden"
               initial={{ opacity: 0, y: 30 }}
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
+              onMouseEnter={() => setHoveredCard(index)}
+              onMouseLeave={() => setHoveredCard(null)}
             >
-              <img
-                src={service.image}
-                alt={service.title}
-                className="w-full h-48 object-cover rounded-lg mb-6"
-              />
+              <div className="relative w-full h-48 rounded-lg mb-6 overflow-hidden">
+                <img
+                  src={service.image}
+                  alt={service.title}
+                  className="w-full h-full object-cover"
+                />
+                {service.video && (
+                  <video
+                    muted
+                    loop
+                    playsInline
+                    className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-300 ${
+                      hoveredCard === index ? 'opacity-100' : 'opacity-0'
+                    }`}
+                    onMouseEnter={(e) => e.currentTarget.play()}
+                    onMouseLeave={(e) => e.currentTarget.pause()}
+                  >
+                    <source src={service.video} type="video/mp4" />
+                  </video>
+                )}
+              </div>
               <div className="text-center">
                 <service.icon className={`mx-auto mb-4 ${service.color}`} size={48} />
                 <h3 className="text-2xl font-bold text-neutral mb-4">{service.title}</h3>
