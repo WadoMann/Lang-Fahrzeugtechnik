@@ -53,8 +53,22 @@ export default function Services() {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="services" className="py-20 bg-gradient-to-b from-blue-900 to-slate-800" ref={ref}>
-      <div className="container mx-auto px-4">
+    <section id="services" className="py-20 bg-gradient-to-b from-blue-900 to-slate-800 relative overflow-hidden" ref={ref}>
+      {/* Background Video */}
+      <video
+        autoPlay
+        muted
+        loop
+        playsInline
+        className="absolute inset-0 w-full h-full object-cover opacity-20"
+      >
+        <source src="/assets/Lng_video.mp4" type="video/mp4" />
+      </video>
+      
+      {/* Dark overlay */}
+      <div className="absolute inset-0 bg-black/60"></div>
+      
+      <div className="container mx-auto px-4 relative z-10">
         <motion.div
           className="text-center mb-16"
           initial={{ opacity: 0, y: 30 }}
