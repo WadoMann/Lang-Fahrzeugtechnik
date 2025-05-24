@@ -15,7 +15,7 @@ const services = [
     icon: Settings,
     title: "Motor & Getriebe",
     description: "Wartung und Reparatur von Motor- und Getriebetechnik für optimale Fahrleistung und Langlebigkeit",
-    image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=250",
+    video: "/assets/Video 2.mp4",
     color: "text-secondary"
   },
   {
