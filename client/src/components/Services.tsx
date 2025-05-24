@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { Search, Settings, AlertTriangle, ClipboardCheck, Wrench, Zap, Play } from "lucide-react";
 
 const services = [
@@ -53,6 +53,20 @@ export default function Services() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const [hoveredCard, setHoveredCard] = useState<number | null>(null);
+  const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
+
+  useEffect(() => {
+    videoRefs.current.forEach((video, index) => {
+      if (video) {
+        if (hoveredCard === index) {
+          video.currentTime = 0;
+          video.play().catch(() => {});
+        } else {
+          video.pause();
+        }
+      }
+    });
+  }, [hoveredCard]);
 
   return (
     <section id="services" className="py-20 bg-gradient-to-b from-blue-900 to-slate-800" ref={ref}>
@@ -89,19 +103,13 @@ export default function Services() {
                 {service.video && (
                   <video
                     ref={(el) => {
-                      if (el) {
-                        if (hoveredCard === index) {
-                          el.play().catch(() => {}); // Fehler stumm ignorieren
-                        } else {
-                          el.pause();
-                        }
-                      }
+                      videoRefs.current[index] = el;
                     }}
                     muted
                     loop
                     playsInline
-                    preload="metadata"
-                    className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-300 ${
+                    preload="auto"
+                    className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ${
                       hoveredCard === index ? 'opacity-100' : 'opacity-0'
                     }`}
                   >
