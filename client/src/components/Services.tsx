@@ -8,7 +8,7 @@ const services = [
     icon: Search,
     title: "Fahrzeugdiagnose",
     description: "Computergestützte Diagnose aller Fahrzeugsysteme mit modernster Technik für präzise Fehlererkennung",
-    video: "/assets/Lng_video.mp4",
+    video: "/assets/Video 1.mp4",
     color: "text-primary"
   },
   {
