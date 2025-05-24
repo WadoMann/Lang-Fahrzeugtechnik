@@ -92,7 +92,7 @@ export default function Contact() {
   ];
 
   return (
-    <section id="contact" className="py-20 bg-white" ref={ref}>
+    <section id="contact" className="py-20 bg-gradient-to-b from-slate-100 to-white" ref={ref}>
       <div className="container mx-auto px-4">
         <motion.div
           className="text-center mb-16"

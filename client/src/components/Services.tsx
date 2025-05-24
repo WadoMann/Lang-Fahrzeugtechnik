@@ -53,7 +53,7 @@ export default function Services() {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="services" className="py-20 bg-white" ref={ref}>
+    <section id="services" className="py-20 bg-gradient-to-b from-white to-gray-50" ref={ref}>
       <div className="container mx-auto px-4">
         <motion.div
           className="text-center mb-16"

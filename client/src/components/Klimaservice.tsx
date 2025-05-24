@@ -36,7 +36,7 @@ export default function Klimaservice() {
   ];
 
   return (
-    <section id="klimaservice" className="py-20 bg-gray-100" ref={ref}>
+    <section id="klimaservice" className="py-20 bg-gradient-to-b from-gray-50 to-slate-100" ref={ref}>
       <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto">
           <motion.div
