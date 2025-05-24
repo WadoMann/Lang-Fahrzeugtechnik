@@ -22,7 +22,7 @@ export default function Hero() {
         onLoadStart={() => console.log("Video started loading")}
         onCanPlay={() => console.log("Video can play")}
       >
-        <source src="/assets/Video 2.mp4" type="video/mp4" />
+        <source src="/assets/Lng_video.mp4" type="video/mp4" />
         Your browser does not support the video tag.
       </video>
       
