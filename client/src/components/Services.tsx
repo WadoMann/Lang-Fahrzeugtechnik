@@ -1,15 +1,14 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
-import { useRef, useState, useEffect } from "react";
-import { Search, Settings, AlertTriangle, ClipboardCheck, Wrench, Zap, Play } from "lucide-react";
+import { useRef } from "react";
+import { Search, Settings, AlertTriangle, ClipboardCheck, Wrench, Zap } from "lucide-react";
 
 const services = [
   {
     icon: Search,
     title: "Fahrzeugdiagnose",
     description: "Computergestützte Diagnose aller Fahrzeugsysteme mit modernster Technik für präzise Fehlererkennung",
-    image: "/assets/img-8922-klein.jpeg",
-    video: "/assets/Video%201.mp4",
+    image: "https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=250",
     color: "text-primary"
   },
   {
@@ -52,21 +51,6 @@ const services = [
 export default function Services() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
-  const [hoveredCard, setHoveredCard] = useState<number | null>(null);
-  const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
-
-  useEffect(() => {
-    videoRefs.current.forEach((video, index) => {
-      if (video) {
-        if (hoveredCard === index) {
-          video.currentTime = 0;
-          video.play().catch(() => {});
-        } else {
-          video.pause();
-        }
-      }
-    });
-  }, [hoveredCard]);
 
   return (
     <section id="services" className="py-20 bg-gradient-to-b from-blue-900 to-slate-800" ref={ref}>
@@ -87,46 +71,16 @@ export default function Services() {
           {services.map((service, index) => (
             <motion.div
               key={service.title}
-              className="service-card bg-white rounded-xl shadow-lg p-8 border border-gray-100 relative overflow-hidden"
+              className="service-card bg-white rounded-xl shadow-lg p-8 border border-gray-100"
               initial={{ opacity: 0, y: 30 }}
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
-              onMouseEnter={() => setHoveredCard(index)}
-              onMouseLeave={() => setHoveredCard(null)}
             >
-              <div className="relative w-full h-48 rounded-lg mb-6 overflow-hidden">
-                {service.video ? (
-                  <>
-                    <img
-                      src={service.image}
-                      alt={service.title}
-                      className={`w-full h-full object-cover transition-opacity duration-500 ${
-                        hoveredCard === index ? 'opacity-0' : 'opacity-100'
-                      }`}
-                    />
-                    <video
-                      ref={(el) => {
-                        videoRefs.current[index] = el;
-                      }}
-                      muted
-                      loop
-                      playsInline
-                      preload="auto"
-                      className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ${
-                        hoveredCard === index ? 'opacity-100' : 'opacity-0'
-                      }`}
-                    >
-                      <source src={service.video} type="video/mp4" />
-                    </video>
-                  </>
-                ) : (
-                  <img
-                    src={service.image}
-                    alt={service.title}
-                    className="w-full h-full object-cover"
-                  />
-                )}
-              </div>
+              <img
+                src={service.image}
+                alt={service.title}
+                className="w-full h-48 object-cover rounded-lg mb-6"
+              />
               <div className="text-center">
                 <service.icon className={`mx-auto mb-4 ${service.color}`} size={48} />
                 <h3 className="text-2xl font-bold text-neutral mb-4">{service.title}</h3>
