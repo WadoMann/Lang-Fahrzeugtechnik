@@ -83,6 +83,7 @@ export default function Services() {
                   loop
                   playsInline
                   className="w-full h-48 object-cover rounded-lg mb-6"
+                  style={{ objectPosition: 'center 20%' }}
                   onLoadStart={() => console.log('Video started loading')}
                   onCanPlay={() => console.log('Video can play')}
                   onError={(e) => console.error('Video error:', e)}
