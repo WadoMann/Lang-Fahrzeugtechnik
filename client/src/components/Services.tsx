@@ -8,7 +8,7 @@ const services = [
     icon: Search,
     title: "Fahrzeugdiagnose",
     description: "Computergestützte Diagnose aller Fahrzeugsysteme mit modernster Technik für präzise Fehlererkennung",
-    video: "/assets/Video 1.mp4",
+    video: "/assets/Video%201.mp4",
     color: "text-primary"
   },
   {
@@ -82,7 +82,11 @@ export default function Services() {
                   muted
                   loop
                   playsInline
+                  preload="auto"
                   className="w-full h-48 object-cover rounded-lg mb-6"
+                  onLoadStart={() => console.log('Video started loading')}
+                  onCanPlay={() => console.log('Video can play')}
+                  onError={(e) => console.error('Video error:', e)}
                 >
                   <source src={service.video} type="video/mp4" />
                   Your browser does not support the video tag.
