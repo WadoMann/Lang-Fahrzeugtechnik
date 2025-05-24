@@ -7,17 +7,22 @@ import { storage } from "./storage";
 export async function registerRoutes(app: Express): Promise<Server> {
   // Serve static files from attached_assets for images and videos
   const assetsPath = path.resolve(process.cwd(), 'attached_assets');
-  app.use('/assets', express.static(assetsPath, {
-    setHeaders: (res, path) => {
-      if (path.endsWith('.mp4')) {
-        res.setHeader('Content-Type', 'video/mp4');
-      }
-      if (path.endsWith('.jpeg') || path.endsWith('.jpg')) {
-        res.setHeader('Content-Type', 'image/jpeg');
-      }
-      res.setHeader('Cache-Control', 'public, max-age=31536000');
+  
+  app.get('/assets/:filename', (req, res) => {
+    const filename = req.params.filename;
+    const filepath = path.join(assetsPath, filename);
+    
+    // Set correct content type based on file extension
+    if (filename.endsWith('.mp4')) {
+      res.setHeader('Content-Type', 'video/mp4');
+      res.setHeader('Accept-Ranges', 'bytes');
+    } else if (filename.endsWith('.jpeg') || filename.endsWith('.jpg')) {
+      res.setHeader('Content-Type', 'image/jpeg');
     }
-  }));
+    
+    res.setHeader('Cache-Control', 'public, max-age=31536000');
+    res.sendFile(filepath);
+  });
 
   // API route for contact form submissions (if needed in the future)
   app.post("/api/contact", async (req, res) => {
