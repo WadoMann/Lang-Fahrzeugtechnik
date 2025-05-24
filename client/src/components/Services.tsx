@@ -81,7 +81,7 @@ export default function Services() {
                   muted
                   loop
                   playsInline
-                  className="w-full h-58 object-cover rounded-lg mb-6"
+                  className="w-full h-52 object-cover rounded-lg mb-6"
                   style={{ objectPosition: 'center 20%' }}
                   onMouseEnter={(e) => e.target.play()}
                   onMouseLeave={(e) => e.target.pause()}
