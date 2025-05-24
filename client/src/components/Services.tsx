@@ -88,14 +88,22 @@ export default function Services() {
                 />
                 {service.video && (
                   <video
+                    ref={(el) => {
+                      if (el) {
+                        if (hoveredCard === index) {
+                          el.play().catch(() => {}); // Fehler stumm ignorieren
+                        } else {
+                          el.pause();
+                        }
+                      }
+                    }}
                     muted
                     loop
                     playsInline
+                    preload="metadata"
                     className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-300 ${
                       hoveredCard === index ? 'opacity-100' : 'opacity-0'
                     }`}
-                    onMouseEnter={(e) => e.currentTarget.play()}
-                    onMouseLeave={(e) => e.currentTarget.pause()}
                   >
                     <source src={service.video} type="video/mp4" />
                   </video>
