@@ -1,14 +1,14 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
-import { useRef } from "react";
-import { Search, Settings, AlertTriangle, ClipboardCheck, Wrench, Zap } from "lucide-react";
+import { useRef, useState } from "react";
+import { Search, Settings, AlertTriangle, ClipboardCheck, Wrench, Zap, Play } from "lucide-react";
 
 const services = [
   {
     icon: Search,
     title: "Fahrzeugdiagnose",
     description: "Computergestützte Diagnose aller Fahrzeugsysteme mit modernster Technik für präzise Fehlererkennung",
-    video: "/assets/Video%201.mp4",
+    image: "/assets/img-8922-klein.jpeg",
     color: "text-primary"
   },
   {
@@ -76,28 +76,11 @@ export default function Services() {
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
             >
-              {service.video ? (
-                <video
-                  autoPlay
-                  muted
-                  loop
-                  playsInline
-                  preload="auto"
-                  className="w-full h-48 object-cover rounded-lg mb-6"
-                  onLoadStart={() => console.log('Video started loading')}
-                  onCanPlay={() => console.log('Video can play')}
-                  onError={(e) => console.error('Video error:', e)}
-                >
-                  <source src={service.video} type="video/mp4" />
-                  Your browser does not support the video tag.
-                </video>
-              ) : (
-                <img
-                  src={service.image}
-                  alt={service.title}
-                  className="w-full h-48 object-cover rounded-lg mb-6"
-                />
-              )}
+              <img
+                src={service.image}
+                alt={service.title}
+                className="w-full h-48 object-cover rounded-lg mb-6"
+              />
               <div className="text-center">
                 <service.icon className={`mx-auto mb-4 ${service.color}`} size={48} />
                 <h3 className="text-2xl font-bold text-neutral mb-4">{service.title}</h3>
