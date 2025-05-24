@@ -53,7 +53,7 @@ export default function Services() {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="services" className="py-20 bg-gradient-to-b from-white to-gray-50" ref={ref}>
+    <section id="services" className="py-20 bg-gradient-to-b from-blue-900 to-slate-800" ref={ref}>
       <div className="container mx-auto px-4">
         <motion.div
           className="text-center mb-16"
@@ -61,8 +61,8 @@ export default function Services() {
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-neutral mb-6">Fahrzeug Service</h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">Fahrzeug Service</h2>
+          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
             Professionelle Wartung und Reparatur für alle Fahrzeugtypen mit modernster Technik und jahrelanger Erfahrung
           </p>
         </motion.div>
