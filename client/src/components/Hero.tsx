@@ -18,17 +18,21 @@ export default function Hero() {
         loop
         playsInline
         className="hero-video"
-        poster="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1920' height='1080'%3E%3Crect width='100%25' height='100%25' fill='%23374151'/%3E%3C/svg%3E"
+        onError={() => console.log("Video failed to load")}
+        onLoadStart={() => console.log("Video started loading")}
+        onCanPlay={() => console.log("Video can play")}
       >
         <source src="/assets/Lng_video.mp4" type="video/mp4" />
-        {/* Fallback gradient if video doesn't load */}
-        <div className="absolute inset-0 bg-gradient-to-br from-neutral via-gray-700 to-gray-900" />
+        Your browser does not support the video tag.
       </video>
       
+      {/* Fallback background if video doesn't load */}
+      <div className="absolute inset-0 bg-gradient-to-br from-neutral via-gray-700 to-gray-900 -z-10" />
+      
       {/* Dark overlay for better text readability */}
-      <div className="absolute inset-0 bg-black/40" />
+      <div className="absolute inset-0 bg-black/40 z-20" />
 
-      <div className="relative z-10 text-center text-white px-4">
+      <div className="relative z-30 text-center text-white px-4">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
