@@ -78,12 +78,13 @@ export default function Services() {
             >
               {service.video ? (
                 <video
-                  autoPlay
                   muted
                   loop
                   playsInline
                   className="w-full h-48 object-cover rounded-lg mb-6"
                   style={{ objectPosition: 'center 20%' }}
+                  onMouseEnter={(e) => e.target.play()}
+                  onMouseLeave={(e) => e.target.pause()}
                   onLoadStart={() => console.log('Video started loading')}
                   onCanPlay={() => console.log('Video can play')}
                   onError={(e) => console.error('Video error:', e)}
