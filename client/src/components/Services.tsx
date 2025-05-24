@@ -95,26 +95,36 @@ export default function Services() {
               onMouseLeave={() => setHoveredCard(null)}
             >
               <div className="relative w-full h-48 rounded-lg mb-6 overflow-hidden">
-                <img
-                  src={service.image}
-                  alt={service.title}
-                  className="w-full h-full object-cover"
-                />
-                {service.video && (
-                  <video
-                    ref={(el) => {
-                      videoRefs.current[index] = el;
-                    }}
-                    muted
-                    loop
-                    playsInline
-                    preload="auto"
-                    className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ${
-                      hoveredCard === index ? 'opacity-100' : 'opacity-0'
-                    }`}
-                  >
-                    <source src={service.video} type="video/mp4" />
-                  </video>
+                {service.video ? (
+                  <>
+                    <img
+                      src={service.image}
+                      alt={service.title}
+                      className={`w-full h-full object-cover transition-opacity duration-500 ${
+                        hoveredCard === index ? 'opacity-0' : 'opacity-100'
+                      }`}
+                    />
+                    <video
+                      ref={(el) => {
+                        videoRefs.current[index] = el;
+                      }}
+                      muted
+                      loop
+                      playsInline
+                      preload="auto"
+                      className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ${
+                        hoveredCard === index ? 'opacity-100' : 'opacity-0'
+                      }`}
+                    >
+                      <source src={service.video} type="video/mp4" />
+                    </video>
+                  </>
+                ) : (
+                  <img
+                    src={service.image}
+                    alt={service.title}
+                    className="w-full h-full object-cover"
+                  />
                 )}
               </div>
               <div className="text-center">
