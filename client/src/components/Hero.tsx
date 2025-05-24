@@ -11,11 +11,22 @@ export default function Hero() {
 
   return (
     <section id="home" className="relative h-screen flex items-center justify-center overflow-hidden">
-      {/* Video Background - Placeholder gradient since video file isn't available */}
-      <div className="absolute inset-0 bg-gradient-to-br from-neutral via-gray-700 to-gray-900">
-        {/* This is where Lng_video.mp4 would be placed as background video */}
-        <div className="absolute inset-0 bg-black/40" />
-      </div>
+      {/* Video Background */}
+      <video
+        autoPlay
+        muted
+        loop
+        playsInline
+        className="hero-video"
+        poster="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1920' height='1080'%3E%3Crect width='100%25' height='100%25' fill='%23374151'/%3E%3C/svg%3E"
+      >
+        <source src="/assets/Lng_video.mp4" type="video/mp4" />
+        {/* Fallback gradient if video doesn't load */}
+        <div className="absolute inset-0 bg-gradient-to-br from-neutral via-gray-700 to-gray-900" />
+      </video>
+      
+      {/* Dark overlay for better text readability */}
+      <div className="absolute inset-0 bg-black/40" />
 
       <div className="relative z-10 text-center text-white px-4">
         <motion.div

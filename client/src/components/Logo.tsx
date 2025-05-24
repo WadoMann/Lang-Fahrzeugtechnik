@@ -9,7 +9,7 @@ export default function Logo({ className = "", showText = true }: LogoProps) {
   return (
     <div className={`flex items-center space-x-3 ${className}`}>
       {/* Custom SVG Logo */}
-      <div className="relative w-12 h-12">
+      <div className="relative w-16 h-16">
         <svg
           viewBox="0 0 48 48"
           className="w-full h-full"
