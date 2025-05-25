@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
-import { useRef, useEffect, useState } from "react";
+import { useRef, useEffect } from "react";
 import { Search, Settings, AlertTriangle, ClipboardCheck, Wrench, Zap } from "lucide-react";
 
 const services = [
@@ -34,38 +34,39 @@ const services = [
   }
 ];
 
-// Custom hook for video autoplay on mobile
-function useVideoAutoplay(videoRef: React.RefObject<HTMLVideoElement>) {
+export default function Services() {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
+
+  // Video autoplay effect for mobile
   useEffect(() => {
-    const video = videoRef.current;
-    if (!video) return;
+    const videos = document.querySelectorAll('video');
+    
+    const handleIntersection = (entries: IntersectionObserverEntry[]) => {
+      entries.forEach((entry) => {
+        const video = entry.target as HTMLVideoElement;
+        if (entry.isIntersecting) {
+          video.play().catch(() => {
+            // Silent fail for autoplay restrictions
+          });
+        } else {
+          video.pause();
+        }
+      });
+    };
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            video.play().catch(() => {
-              // Autoplay failed, which is normal on some browsers
-            });
-          } else {
-            video.pause();
-          }
-        });
-      },
-      { threshold: 0.5 } // Play when 50% of video is visible
-    );
+    const observer = new IntersectionObserver(handleIntersection, {
+      threshold: 0.3
+    });
 
-    observer.observe(video);
+    videos.forEach((video) => {
+      observer.observe(video);
+    });
 
     return () => {
       observer.disconnect();
     };
-  }, [videoRef]);
-}
-
-export default function Services() {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  }, [isInView]);
 
   return (
     <section id="services" className="py-20 bg-gradient-to-b from-blue-900 to-slate-800" ref={ref}>
@@ -83,50 +84,44 @@ export default function Services() {
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 lg:gap-8">
-          {services.map((service, index) => {
-            const videoRef = useRef<HTMLVideoElement>(null);
-            useVideoAutoplay(videoRef);
-            
-            return (
-              <motion.div
-                key={service.title}
-                className="service-card bg-white rounded-xl shadow-lg p-6 lg:p-8 border border-gray-100 h-full"
-                initial={{ opacity: 0, y: 30 }}
-                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-              >
-                {service.video ? (
-                  <video
-                    ref={videoRef}
-                    muted
-                    loop
-                    playsInline
-                    className="w-full h-48 lg:h-64 object-cover rounded-lg mb-6"
-                    style={{ objectPosition: 'center 20%' }}
-                    onMouseEnter={(e) => (e.target as HTMLVideoElement).play()}
-                    onMouseLeave={(e) => (e.target as HTMLVideoElement).pause()}
-                    onLoadStart={() => console.log('Video started loading')}
-                    onCanPlay={() => console.log('Video can play')}
-                    onError={(e) => console.error('Video error:', e)}
-                  >
-                    <source src={service.video} type="video/mp4" />
-                    Ihr Browser unterstützt das Video-Format nicht.
-                  </video>
-                ) : (
-                  <img
-                    src={service.image}
-                    alt={service.title}
-                    className="w-full h-48 lg:h-64 object-cover rounded-lg mb-6"
-                  />
-                )}
-                <div className="text-center">
-                  <service.icon className={`mx-auto mb-4 ${service.color}`} size={48} />
-                  <h3 className="text-2xl font-bold text-neutral mb-4">{service.title}</h3>
-                  <p className="text-gray-600">{service.description}</p>
-                </div>
-              </motion.div>
-            );
-          })}
+          {services.map((service, index) => (
+            <motion.div
+              key={service.title}
+              className="service-card bg-white rounded-xl shadow-lg p-6 lg:p-8 border border-gray-100 h-full"
+              initial={{ opacity: 0, y: 30 }}
+              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+              transition={{ duration: 0.6, delay: index * 0.1 }}
+            >
+              {service.video ? (
+                <video
+                  muted
+                  loop
+                  playsInline
+                  className="w-full h-48 lg:h-64 object-cover rounded-lg mb-6"
+                  style={{ objectPosition: 'center 20%' }}
+                  onMouseEnter={(e) => (e.target as HTMLVideoElement).play()}
+                  onMouseLeave={(e) => (e.target as HTMLVideoElement).pause()}
+                  onLoadStart={() => console.log('Video started loading')}
+                  onCanPlay={() => console.log('Video can play')}
+                  onError={(e) => console.error('Video error:', e)}
+                >
+                  <source src={service.video} type="video/mp4" />
+                  Ihr Browser unterstützt das Video-Format nicht.
+                </video>
+              ) : (
+                <img
+                  src={service.image}
+                  alt={service.title}
+                  className="w-full h-48 lg:h-64 object-cover rounded-lg mb-6"
+                />
+              )}
+              <div className="text-center">
+                <service.icon className={`mx-auto mb-4 ${service.color}`} size={48} />
+                <h3 className="text-2xl font-bold text-neutral mb-4">{service.title}</h3>
+                <p className="text-gray-600">{service.description}</p>
+              </div>
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>
