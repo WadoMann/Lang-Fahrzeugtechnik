@@ -67,6 +67,7 @@ export default function Services() {
                   muted
                   loop
                   playsInline
+                  preload="metadata"
                   className="w-full h-64 object-cover rounded-lg mb-6"
                   style={{ objectPosition: 'center 20%' }}
                   onMouseEnter={(e) => e.target.play()}
