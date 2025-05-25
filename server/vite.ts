@@ -67,8 +67,53 @@ export async function setupVite(app: Express, server: Server) {
   });
 }
 
+import path from "path";
+import fs from "fs";
+import { createServer as createViteServer, createLogger } from "vite";
+import { type Server } from "http";
+import viteConfig from "../vite.config.js";
+import { nanoid } from "nanoid";
+import { type Express } from "express";
+import express from "express";
+
+const viteLogger = createLogger();
+
+export async function setupVite(app: Express, server: Server) {
+  const serverOptions = {
+    middlewareMode: true,
+    hmr: { server },
+    allowedHosts: ["localhost", "0.0.0.0"],
+  };
+
+  const vite = await createViteServer({
+    ...viteConfig,
+    server: serverOptions,
+    customLogger: viteLogger,
+  });
+
+  app.use(vite.ssrFixStacktrace);
+  app.use(vite.middlewares);
+
+  app.use("*", async (req, res) => {
+    const url = req.originalUrl;
+
+    try {
+      const template = fs.readFileSync(
+        path.resolve(import.meta.dirname, "../client/index.html"),
+        "utf-8",
+      );
+      const html = await vite.transformIndexHtml(url, template);
+      res.status(200).set({ "Content-Type": "text/html" }).end(html);
+    } catch (e: any) {
+      vite.ssrFixStacktrace(e);
+      console.error(e.stack);
+      res.status(500).end(e.stack);
+    }
+  });
+}
+
 export function serveStatic(app: Express) {
-  const distPath = path.resolve(import.meta.dirname, "public");
+  const distPath = path.resolve(import.meta.dirname, "../dist/public");
 
   if (!fs.existsSync(distPath)) {
     throw new Error(
