@@ -26,13 +26,6 @@ const services = [
     color: "text-accent"
   },
   {
-    icon: Zap,
-    title: "Elektrik & Beleuchtung",
-    description: "Reparatur und Wartung der Fahrzeugelektrik, Beleuchtung und elektrischer Systeme",
-    image: "https://images.unsplash.com/photo-1580273916550-e323be2ae537?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=250",
-    color: "text-yellow-500"
-  },
-  {
     icon: Wrench,
     title: "Reifen & Räder",
     description: "Reifenwechsel, Auswuchten, Spureinstellung und Beratung für optimalen Fahrkomfort und Sicherheit",
