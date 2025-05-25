@@ -29,7 +29,7 @@ const services = [
     icon: Zap,
     title: "Elektrik & Beleuchtung",
     description: "Professionelle Diagnose und Reparatur der Fahrzeugelektrik, Beleuchtung und elektronischen Systeme",
-    image: "https://images.unsplash.com/photo-1621905251189-08b45d6a269e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=250",
+    image: "https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=250",
     color: "text-yellow-500"
   },
   {
