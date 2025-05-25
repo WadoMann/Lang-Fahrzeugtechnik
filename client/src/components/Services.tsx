@@ -29,7 +29,7 @@ const services = [
     icon: ClipboardCheck,
     title: "HU & AU",
     description: "Hauptuntersuchung und Abgasuntersuchung - wir bereiten Ihr Fahrzeug optimal auf die Prüfung vor",
-    image: "https://images.unsplash.com/photo-1542574621-e088a4464f90?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=250",
+    tuv: true,
     color: "text-success"
   },
   {
@@ -92,11 +92,38 @@ export default function Services() {
                   <source src={service.video} type="video/mp4" />
                   Ihr Browser unterstützt das Video-Format nicht.
                 </video>
+              ) : service.tuv ? (
+                <div className="w-full h-64 bg-gradient-to-br from-green-50 to-blue-50 rounded-lg mb-6 flex items-center justify-center relative overflow-hidden">
+                  {/* TÜV-inspired design */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-green-100/50 to-blue-100/50"></div>
+                  
+                  {/* TÜV Badge */}
+                  <div className="relative z-10 text-center">
+                    <div className="w-32 h-32 mx-auto mb-4 bg-white rounded-full shadow-lg border-4 border-green-500 flex items-center justify-center">
+                      <div className="text-center">
+                        <div className="text-3xl font-bold text-green-600">TÜV</div>
+                        <div className="text-xs text-gray-600 font-semibold">GEPRÜFT</div>
+                      </div>
+                    </div>
+                    
+                    {/* Checkmark */}
+                    <div className="w-16 h-16 mx-auto bg-green-500 rounded-full flex items-center justify-center shadow-lg">
+                      <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M5 13l4 4L19 7"></path>
+                      </svg>
+                    </div>
+                  </div>
+                  
+                  {/* Background pattern */}
+                  <div className="absolute top-4 right-4 w-12 h-12 border-2 border-green-200 rounded-full opacity-30"></div>
+                  <div className="absolute bottom-4 left-4 w-8 h-8 border-2 border-blue-200 rounded-full opacity-30"></div>
+                  <div className="absolute top-1/2 left-4 w-6 h-6 border-2 border-green-200 rounded-full opacity-20"></div>
+                </div>
               ) : (
                 <img
                   src={service.image}
                   alt={service.title}
-                  className="w-full h-48 object-cover rounded-lg mb-6"
+                  className="w-full h-64 object-cover rounded-lg mb-6"
                 />
               )}
               <div className="text-center">
