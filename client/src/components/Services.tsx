@@ -31,13 +31,6 @@ const services = [
     description: "Reifenwechsel, Auswuchten, Spureinstellung und Beratung für optimalen Fahrkomfort und Sicherheit",
     image: "https://images.unsplash.com/photo-1615906655593-ad0386982a0f?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=250",
     color: "text-primary"
-  },
-  {
-    icon: Zap,
-    title: "Elektrik & Beleuchtung",
-    description: "Reparatur und Wartung der Fahrzeugelektrik, Beleuchtung und elektrischer Systeme",
-    image: "https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=250",
-    color: "text-accent"
   }
 ];
 
