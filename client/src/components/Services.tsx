@@ -8,21 +8,21 @@ const services = [
     icon: Search,
     title: "Fahrzeugdiagnose",
     description: "Computergestützte Diagnose aller Fahrzeugsysteme mit modernster Technik für präzise Fehlererkennung",
-    video: "/videos/Video11.mp4",
+    video: "/assets/Video11.mp4",
     color: "text-primary"
   },
   {
     icon: Settings,
     title: "Motor & Getriebe",
     description: "Wartung und Reparatur von Motor- und Getriebetechnik für optimale Fahrleistung und Langlebigkeit",
-    video: "/videos/Video4.mp4",
+    video: "/assets/Video 4.mp4",
     color: "text-secondary"
   },
   {
     icon: AlertTriangle,
     title: "Bremsenservice",
     description: "Sicherheitsprüfung und Wartung des Bremssystems für maximale Fahrsicherheit bei allen Witterungsbedingungen",
-    video: "/videos/Video2.mp4",
+    video: "/assets/Video 2.mp4",
     color: "text-accent"
   },
   {
