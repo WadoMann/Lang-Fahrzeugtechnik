@@ -7,8 +7,8 @@ const __dirname = path.dirname(__filename);
 const app = express();
 
 // Serve static files
-app.use(express.static('client'));
-app.use('/assets', express.static('attached_assets'));
+app.use(express.static('.'));
+app.use('/attached_assets', express.static('attached_assets'));
 
 // API routes
 app.use(express.json());
@@ -26,7 +26,7 @@ app.get('/api/health', (req, res) => {
 
 // Catch all for SPA
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'client', 'index.html'));
+  res.sendFile(path.join(__dirname, 'index.html'));
 });
 
 const port = 3001;
