@@ -29,7 +29,7 @@ const services = [
     icon: Wrench,
     title: "Reifen & Räder",
     description: "Reifenwechsel, Auswuchten, Spureinstellung und Beratung für optimalen Fahrkomfort und Sicherheit",
-    video: "/assets/Video 3.mp4",
+    image: "https://images.unsplash.com/photo-1615906655593-ad0386982a0f?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=250",
     color: "text-primary"
   }
 ];
@@ -67,7 +67,6 @@ export default function Services() {
                   muted
                   loop
                   playsInline
-                  preload="metadata"
                   className="w-full h-64 object-cover rounded-lg mb-6"
                   style={{ objectPosition: 'center 20%' }}
                   onMouseEnter={(e) => e.target.play()}
