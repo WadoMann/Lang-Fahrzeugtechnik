@@ -106,14 +106,14 @@ export default function Contact() {
           </p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-12">
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-16">
           {/* Contact Information */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -30 }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <h3 className="text-3xl font-bold text-neutral mb-8">Lang Fahrzeugtechnik</h3>
+            <h3 className="text-2xl lg:text-4xl font-bold text-neutral mb-8">Lang Fahrzeugtechnik</h3>
 
             <div className="space-y-6">
               {contactInfo.map((info, index) => (
@@ -173,7 +173,7 @@ export default function Contact() {
             animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 30 }}
             transition={{ duration: 0.6, delay: 0.4 }}
           >
-            <div className="bg-gray-200 h-96 rounded-xl overflow-hidden shadow-lg">
+            <div className="bg-gray-200 h-80 lg:h-96 xl:h-[500px] rounded-xl overflow-hidden shadow-lg">
               <div ref={mapRef} className="w-full h-full" />
             </div>
           </motion.div>

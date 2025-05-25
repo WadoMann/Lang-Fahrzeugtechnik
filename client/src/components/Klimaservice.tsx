@@ -60,7 +60,7 @@ export default function Klimaservice() {
               <img
                 src="https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400"
                 alt="Klimaservice"
-                className="w-full h-80 object-cover rounded-xl shadow-lg"
+                className="w-full h-64 lg:h-80 xl:h-96 object-cover rounded-xl shadow-lg"
               />
             </motion.div>
 
