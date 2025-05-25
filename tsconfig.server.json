@@ -1,24 +1,12 @@
-
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
-    "noEmit": false,
-    "allowImportingTsExtensions": false,
     "outDir": "./dist",
-    "rootDir": ".",
+    "noEmit": false,
     "module": "ESNext",
-    "target": "ES2022",
-    "moduleResolution": "node",
-    "allowSyntheticDefaultImports": true
+    "moduleResolution": "bundler",
+    "rootDir": "."
   },
-  "include": [
-    "server/**/*",
-    "shared/**/*",
-    "vite.config.ts"
-  ],
-  "exclude": [
-    "node_modules",
-    "client",
-    "dist"
-  ]
+  "include": ["server/**/*", "shared/**/*"],
+  "exclude": ["client/**/*"]
 }
