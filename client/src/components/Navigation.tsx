@@ -40,24 +40,24 @@ export default function Navigation() {
           isScrolled ? "bg-white/98 backdrop-blur-sm shadow-lg" : "bg-white/95 backdrop-blur-sm"
         }`}
       >
-        <div className="container mx-auto px-6">
-          <div className="flex justify-between items-center py-6">
+        <div className="container mx-auto px-4 lg:px-6">
+          <div className="flex justify-between items-center py-4 lg:py-6">
             <Logo />
 
             {/* Desktop Navigation */}
-            <div className="hidden md:flex space-x-10">
+            <div className="hidden lg:flex space-x-8 xl:space-x-12">
               {navItems.map((item) => (
                 <button
                   key={item.id}
                   onClick={() => scrollToSection(item.id)}
-                  className="nav-link text-neutral hover:text-primary font-semibold text-lg transition-all duration-300 hover:scale-105"
+                  className="nav-link text-neutral hover:text-primary font-semibold text-lg xl:text-xl transition-all duration-300 hover:scale-105 px-2 py-1"
                 >
                   {item.name}
                 </button>
               ))}
               <button
                 onClick={() => setActiveModal("impressum")}
-                className="nav-link text-neutral hover:text-primary font-semibold text-lg transition-all duration-300 hover:scale-105"
+                className="nav-link text-neutral hover:text-primary font-semibold text-lg xl:text-xl transition-all duration-300 hover:scale-105 px-2 py-1"
               >
                 Impressum
               </button>
@@ -66,7 +66,7 @@ export default function Navigation() {
             {/* Mobile Menu Button */}
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="md:hidden text-neutral p-2"
+              className="lg:hidden text-neutral p-2"
             >
               {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
@@ -79,7 +79,7 @@ export default function Navigation() {
                 initial={{ opacity: 0, height: 0 }}
                 animate={{ opacity: 1, height: "auto" }}
                 exit={{ opacity: 0, height: 0 }}
-                className="md:hidden pb-4 overflow-hidden"
+                className="lg:hidden pb-4 overflow-hidden"
               >
                 <div className="flex flex-col space-y-4">
                   {navItems.map((item) => (

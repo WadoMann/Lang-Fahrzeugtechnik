@@ -32,14 +32,14 @@ export default function Hero() {
       {/* Dark overlay for better text readability */}
       <div className="absolute inset-0 bg-black/40 z-20" />
 
-      <div className="relative z-30 text-center text-white px-4">
+      <div className="relative z-30 text-center text-white px-4 max-w-6xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
           <motion.h1
-            className="text-5xl md:text-7xl font-bold mb-6"
+            className="text-4xl sm:text-5xl lg:text-7xl xl:text-8xl font-bold mb-6 lg:mb-8"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
@@ -47,7 +47,7 @@ export default function Hero() {
             Lang <span className="text-accent">Fahrzeugtechnik</span>
           </motion.h1>
           <motion.p
-            className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto"
+            className="text-lg sm:text-xl lg:text-2xl xl:text-3xl mb-8 lg:mb-12 max-w-4xl mx-auto leading-relaxed"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
@@ -55,20 +55,20 @@ export default function Hero() {
             Ihr vertrauensvoller Partner für professionellen KFZ-Service in Westerburg
           </motion.p>
           <motion.div
-            className="flex flex-col sm:flex-row gap-4 justify-center"
+            className="flex flex-col sm:flex-row gap-4 lg:gap-6 justify-center"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
           >
             <button
               onClick={() => scrollToSection("contact")}
-              className="bg-primary hover:bg-blue-700 text-white px-8 py-4 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105"
+              className="bg-primary hover:bg-blue-700 text-white px-8 lg:px-12 py-4 lg:py-6 rounded-lg font-semibold text-lg lg:text-xl transition-all duration-300 transform hover:scale-105 shadow-2xl"
             >
               Termin vereinbaren
             </button>
             <button
               onClick={() => scrollToSection("services")}
-              className="bg-white/20 hover:bg-white/30 text-white px-8 py-4 rounded-lg font-semibold backdrop-blur-sm transition-all duration-300"
+              className="bg-white/20 hover:bg-white/30 text-white px-8 lg:px-12 py-4 lg:py-6 rounded-lg font-semibold text-lg lg:text-xl backdrop-blur-sm transition-all duration-300 border border-white/30"
             >
               Unsere Services
             </button>

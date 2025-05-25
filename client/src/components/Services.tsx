@@ -53,11 +53,11 @@ export default function Services() {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 lg:gap-8">
           {services.map((service, index) => (
             <motion.div
               key={service.title}
-              className="service-card bg-white rounded-xl shadow-lg p-8 border border-gray-100"
+              className="service-card bg-white rounded-xl shadow-lg p-6 lg:p-8 border border-gray-100 h-full"
               initial={{ opacity: 0, y: 30 }}
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
@@ -67,10 +67,10 @@ export default function Services() {
                   muted
                   loop
                   playsInline
-                  className="w-full h-64 object-cover rounded-lg mb-6"
+                  className="w-full h-48 lg:h-64 object-cover rounded-lg mb-6"
                   style={{ objectPosition: 'center 20%' }}
-                  onMouseEnter={(e) => e.target.play()}
-                  onMouseLeave={(e) => e.target.pause()}
+                  onMouseEnter={(e) => (e.target as HTMLVideoElement).play()}
+                  onMouseLeave={(e) => (e.target as HTMLVideoElement).pause()}
                   onLoadStart={() => console.log('Video started loading')}
                   onCanPlay={() => console.log('Video can play')}
                   onError={(e) => console.error('Video error:', e)}
@@ -82,7 +82,7 @@ export default function Services() {
                 <img
                   src={service.image}
                   alt={service.title}
-                  className="w-full h-64 object-cover rounded-lg mb-6"
+                  className="w-full h-48 lg:h-64 object-cover rounded-lg mb-6"
                 />
               )}
               <div className="text-center">
