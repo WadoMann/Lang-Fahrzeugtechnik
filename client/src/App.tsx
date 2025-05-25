@@ -17,12 +17,16 @@ function Router() {
 
 function App() {
   return (
-    <QueryClientProvider client={queryClient}>
-      <TooltipProvider>
-        <Toaster />
-        <Router />
-      </TooltipProvider>
-    </QueryClientProvider>
+    <div style={{ background: 'red', color: 'white', padding: '20px' }}>
+      <h1>Test - Lang Fahrzeugtechnik</h1>
+      <p>Wenn Sie das sehen, funktioniert React!</p>
+      <QueryClientProvider client={queryClient}>
+        <TooltipProvider>
+          <Toaster />
+          <Router />
+        </TooltipProvider>
+      </QueryClientProvider>
+    </div>
   );
 }
 
