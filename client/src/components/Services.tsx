@@ -29,7 +29,7 @@ const services = [
     icon: Wrench,
     title: "Reifen & Räder",
     description: "Reifenwechsel, Auswuchten, Spureinstellung und Beratung für optimalen Fahrkomfort und Sicherheit",
-    image: "https://images.unsplash.com/photo-1615906655593-ad0386982a0f?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=250",
+    video: "/assets/Video 3.mp4",
     color: "text-primary"
   }
 ];
