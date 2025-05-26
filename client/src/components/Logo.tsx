@@ -1,3 +1,5 @@
+import logoImage from "@assets/site_logo.jpeg";
+
 interface LogoProps {
   className?: string;
   showText?: boolean;
@@ -6,10 +8,10 @@ interface LogoProps {
 export default function Logo({ className = "", showText = true }: LogoProps) {
   return (
     <div className={`flex items-center space-x-3 ${className}`}>
-      {/* Your original site logo - direct path from public folder */}
+      {/* Your original site logo */}
       <div className="p-2">
         <img 
-          src="/site_logo.jpeg" 
+          src={logoImage} 
           alt="Lang Fahrzeugtechnik Logo" 
           className="w-20 h-20 lg:w-24 lg:h-24 object-contain"
           style={{ imageRendering: 'auto' }}
