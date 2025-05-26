@@ -9,11 +9,11 @@ export default function Logo({ className = "", showText = true }: LogoProps) {
   return (
     <div className={`flex items-center space-x-3 ${className}`}>
       {/* Your custom car logo */}
-      <div className="bg-white p-3 rounded-xl shadow-lg border-2 border-primary">
+      <div className="bg-white p-4 rounded-xl shadow-lg">
         <img 
           src={carLogoPath} 
           alt="Lang Fahrzeugtechnik Logo" 
-          className="w-12 h-12 lg:w-16 lg:h-16 object-contain"
+          className="w-16 h-16 lg:w-20 lg:h-20 object-contain"
           style={{ imageRendering: 'auto' }}
         />
       </div>
