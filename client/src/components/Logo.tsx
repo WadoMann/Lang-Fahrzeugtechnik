@@ -1,4 +1,4 @@
-import carLogoPath from "@assets/image_1748239965832.png";
+import carLogoPath from "@assets/image_1748240080982.png";
 
 interface LogoProps {
   className?: string;
@@ -9,11 +9,11 @@ export default function Logo({ className = "", showText = true }: LogoProps) {
   return (
     <div className={`flex items-center space-x-3 ${className}`}>
       {/* Your custom car logo */}
-      <div className="bg-primary p-3 rounded-lg shadow-lg">
+      <div className="bg-white p-2 rounded-lg shadow-lg border-2 border-primary">
         <img 
           src={carLogoPath} 
           alt="Lang Fahrzeugtechnik Logo" 
-          className="w-8 h-6 filter brightness-0 invert"
+          className="w-8 h-8"
         />
       </div>
       
