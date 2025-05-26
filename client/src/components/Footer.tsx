@@ -90,6 +90,15 @@ export default function Footer() {
               >
                 Datenschutz
               </button>
+              <button
+                onClick={() => {
+                  localStorage.removeItem('cookie-consent');
+                  window.location.reload();
+                }}
+                className="hover:text-white transition-colors"
+              >
+                Cookie-Einstellungen
+              </button>
             </div>
           </motion.div>
         </div>
