@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import Logo from "./Logo";
 import Modal from "./Modal";
 
 export default function Navigation() {
@@ -42,7 +41,16 @@ export default function Navigation() {
       >
         <div className="container mx-auto px-4 lg:px-6">
           <div className="flex justify-between items-center py-4 lg:py-6">
-            <Logo />
+            <div className="flex items-center space-x-3">
+              <div>
+                <h1 className="text-2xl md:text-3xl font-bold text-neutral bg-gradient-to-r from-primary to-blue-600 bg-clip-text text-transparent">
+                  Lang Fahrzeugtechnik
+                </h1>
+                <p className="text-base md:text-lg text-gray-600 font-medium">
+                  Professioneller KFZ-Service
+                </p>
+              </div>
+            </div>
 
             {/* Desktop Navigation */}
             <div className="hidden lg:flex space-x-8 xl:space-x-12">
