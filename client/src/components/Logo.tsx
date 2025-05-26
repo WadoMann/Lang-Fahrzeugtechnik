@@ -1,4 +1,4 @@
-import carLogoPath from "@assets/image_1748240080982.png";
+import carLogoPath from "@assets/site_logo.jpeg";
 
 interface LogoProps {
   className?: string;
