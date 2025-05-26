@@ -9,7 +9,7 @@ export default function Logo({ className = "", showText = true }: LogoProps) {
   return (
     <div className={`flex items-center space-x-3 ${className}`}>
       {/* Your custom car logo */}
-      <div className="bg-white p-4 rounded-xl shadow-lg">
+      <div className="bg-white/95 backdrop-blur-sm p-4 rounded-xl shadow-lg">
         <img 
           src={carLogoPath} 
           alt="Lang Fahrzeugtechnik Logo" 
