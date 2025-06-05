@@ -4,40 +4,39 @@ import path from "path";
 import runtimeErrorOverlay from "@replit/vite-plugin-runtime-error-modal";
 import { viteStaticCopy } from "vite-plugin-static-copy";
 
-export default defineConfig({
-  plugins: [
+export default defineConfig(async () => {
+  const plugins = [
     react(),
     runtimeErrorOverlay(),
-
-viteStaticCopy({
+    viteStaticCopy({
       targets: [
         {
-          src: path.resolve(import.meta.dirname, "attached_assets"),
-          dest: "", // Kopiert nach dist/public/attached_assets
+          // 👇 korrekt relativ zu root: client/
+          src: "../attached_assets/**/*.{png,jpeg,jpg,mp4}",
+          dest: "attached_assets",
         },
       ],
-    }),    
+    }),
+  ];
 
-    ...(process.env.NODE_ENV !== "production" &&
-    process.env.REPL_ID !== undefined
-      ? [
-          await import("@replit/vite-plugin-cartographer").then((m) =>
-            m.cartographer(),
-          ),
-        ]
-      : []),
-  ],
-  resolve: {
-    alias: {
-      "@": path.resolve(import.meta.dirname, "client", "src"),
-      "@shared": path.resolve(import.meta.dirname, "shared"),
-      "@assets": path.resolve(import.meta.dirname, "attached_assets"),
+  if (process.env.NODE_ENV !== "production" && process.env.REPL_ID !== undefined) {
+    const { cartographer } = await import("@replit/vite-plugin-cartographer");
+    plugins.push(cartographer());
+  }
+
+  return {
+    plugins,
+    resolve: {
+      alias: {
+        "@": path.resolve(import.meta.dirname, "client", "src"),
+        "@shared": path.resolve(import.meta.dirname, "shared"),
+        "@assets": path.resolve(import.meta.dirname, "attached_assets"),
+      },
     },
-  },
-  root: path.resolve(import.meta.dirname, "client"),
-  build: {
-    // 👉 Ändere das hier:
-    outDir: path.resolve(import.meta.dirname, "dist/public"),
-    emptyOutDir: true,
-  },
+    root: path.resolve(import.meta.dirname, "client"),
+    build: {
+      outDir: path.resolve(import.meta.dirname, "dist/public"),
+      emptyOutDir: true,
+    },
+  };
 });
